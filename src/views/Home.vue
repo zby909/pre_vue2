@@ -1,18 +1,15 @@
 <template>
   <div>
-    <van-nav-bar title="标题" left-text="返回" right-text="按钮" left-arrow @click-left="onClickLeft" @click-right="onClickRight" />
     <div class="test">
       <van-button @click="test" type="primary" block>主要按钮</van-button>
       <van-button @click="showDialog = true" type="info" block>信息按钮</van-button>
-      <van-button type="default" block>测试</van-button>
-      <van-button type="warning" block>警告按钮</van-button>
-      <van-button type="danger" block>危险按钮</van-button>
+      <van-button type="default" block>默认按钮</van-button>
     </div>
 
-    <div class="ttt">123</div>
+    <div class="ttt" @click="handleClipboard($event)">复制内容</div>
 
     <SimpleDialog v-model="showDialog" @clickCloseBtn="showDialog = false" showTitleLine showConfirmButton showCancelButton>
-      <div>con</div>
+      <div class="dialog-con">con</div>
     </SimpleDialog>
 
     <div class="t-icon">
@@ -23,6 +20,7 @@
 </template>
 
 <script>
+import handleClipboard from '@/utils/clipboard';
 export default {
   name: 'Home',
   components: {},
@@ -30,32 +28,28 @@ export default {
   data() {
     return {
       showDialog: false,
-      showTimePicker: true,
     };
   },
   computed: {},
   watch: {},
   created() {},
-  mounted() {},
+  mounted() {
+    setTimeout(() => {
+      this.show_cut_model = true;
+    }, 1000);
+  },
   methods: {
-    onClickLeft() {
-      this.$toast('返回');
-    },
-    onClickRight() {
-      this.$toast('按钮');
-    },
+    handleClipboard,
     async test() {
       let data = await this.$API.test.getTest({ id: 3778678 });
       console.log(...data);
-    },
-    confirmTime(p) {
-      console.log(p);
     },
   },
 };
 </script>
 <style lang="scss" scoped>
 .test {
+  padding-top: 10px;
   .van-button {
     margin: 10px auto;
     width: 300px;
@@ -65,6 +59,11 @@ export default {
 .ttt {
   text-align: center;
   color: $bg-orange;
+}
+
+.dialog-con {
+  text-align: center;
+  margin: 20px 10px;
 }
 
 .t-icon {

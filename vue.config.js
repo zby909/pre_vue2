@@ -126,7 +126,7 @@ module.exports = {
         },
       });
     config.plugin('html').tap(args => {
-      args[0].title = '酷酷宝票券系统';
+      args[0].title = 'zby';
       return args;
     });
   },

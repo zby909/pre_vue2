@@ -1,3 +1,4 @@
+/* 页面滚动到指定位置 */
 Math.easeInOutQuad = function (t, b, c, d) {
   t /= d / 2;
   if (t < 1) {
@@ -8,7 +9,7 @@ Math.easeInOutQuad = function (t, b, c, d) {
 };
 
 // requestAnimationFrame for Smart Animating http://goo.gl/sx5sts
-var requestAnimFrame = (function () {
+let requestAnimFrame = (function () {
   return (
     window.requestAnimationFrame ||
     window.webkitRequestAnimationFrame ||
@@ -38,17 +39,16 @@ function position() {
  * @param {number} duration
  * @param {Function} callback
  */
-export function scrollTo(to, duration, callback) {
+export function scrollTo(to, duration = 500, callback) {
   const start = position();
   const change = to - start;
   const increment = 20;
   let currentTime = 0;
-  duration = typeof duration === 'undefined' ? 500 : duration;
-  var animateScroll = function () {
+  let animateScroll = function () {
     // increment the time
     currentTime += increment;
     // find the value with the quadratic in-out easing function
-    var val = Math.easeInOutQuad(currentTime, start, change, duration);
+    let val = Math.easeInOutQuad(currentTime, start, change, duration);
     // move the document.body
     move(val);
     // do the animation unless its over

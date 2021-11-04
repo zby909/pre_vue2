@@ -7,7 +7,7 @@ const loadingDom = `<div id="loader-wrapper">
         <div class="load_title">
           正在加载 , 请耐心等待
           <br />
-          <span>好酷后台管理系统</span>
+          <span>xxxxxx系统</span>
         </div>
       </div>`;
 

@@ -3,7 +3,7 @@ import Qs from 'qs';
 import { Toast } from 'vant';
 
 const BaseServiceApi = process.env.VUE_APP_SERVICE_BASE_URL;
-// 好酷base实例
+// 一个axios请求实例
 const BaseService = axios.create({
   baseURL: BaseServiceApi, // url = base url + request url
   timeout: 5000, // request timeout
