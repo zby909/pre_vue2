@@ -3,16 +3,19 @@ module.exports = {
   env: {
     node: true,
   },
-  extends: ["plugin:vue/essential", "eslint:recommended", "@vue/prettier"],
+  extends: ['plugin:vue/essential', 'eslint:recommended', '@vue/prettier'],
   parserOptions: {
-    parser: "babel-eslint",
+    parser: 'babel-eslint',
   },
+  /**
+   * "off" 或 0 - 关闭规则
+   * "warn" 或 1 - 开启规则，使用警告级别的错误：warn (不会导致程序退出),
+   * "error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
+   */
   rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "arrow-parens": 0, //箭头函数用小括号括起来 - 关闭
-    indent: [2, 2, { SwitchCase: 1 }], //缩进风格 - 开启缩进2格
-    "no-control-regex": 0, //禁止在正则表达式中使用控制字符
-    "no-useless-escape": 0, //禁用不必要的转义字符
+    'no-console': process.env.VUE_APP_MODE === 'production' ? 2 : 0,
+    'no-debugger': process.env.VUE_APP_MODE === 'production' ? 2 : 0,
+    'no-control-regex': 0, //禁止在正则表达式中使用控制字符
+    'no-useless-escape': 0, //禁用不必要的转义字符
   },
 };

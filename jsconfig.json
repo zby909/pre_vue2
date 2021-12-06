@@ -1,15 +1,9 @@
 {
   "compilerOptions": {
-    // 目标代码(ts -> js(es5/6/7))
-    "target": "esnext",
-    // 辅助的导入功能
-    "importHelpers": true,
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": ".",
-    // 路径解析(类似于webpack alias)
+    "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "dist"]
 }
