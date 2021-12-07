@@ -13,14 +13,16 @@
     </SimpleDialog>
 
     <div class="t-icon">
-      <HkIcon icon="icon404" fontSize="200px" iconClass="icon"></HkIcon>
-      <BgIcon class="bg-icon" :img="require('@/assets/logo.png')" />
+      <GLIcon icon="icon404" fontSize="200px" iconClass="icon"></GLIcon>
+      <GLBgIcon class="bg-icon" :img="require('@/assets/logo.png')" />
     </div>
   </div>
 </template>
 
 <script>
 import handleClipboard from '@/utils/clipboard';
+
+import testApi from '@/api/modules/test.api.js';
 export default {
   name: 'Home',
   components: {},
@@ -41,7 +43,8 @@ export default {
   methods: {
     handleClipboard,
     async test() {
-      let data = await this.$API.test.getTest({ id: 3778678 });
+      // let data = await this.$API.test.getTest({ id: 3778678 });
+      let data = await testApi.getTest({ id: 3778678 });
       console.log(...data);
     },
   },

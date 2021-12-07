@@ -4,18 +4,25 @@
 <BackgroundImg :img="'图片路径'" :size="类型，可选cover / contain"/> 外部定义类名设置宽高即可显示
 -->
 <template>
-  <div class="g-icon-wrap">
-    <div class="g-icon-wrap_bg" :class="[size]" :style="{ backgroundImage: 'url(' + img + ')' }"></div>
+  <div class="g_icon_wrap">
+    <div
+      class="g_icon_wrap_bg"
+      :class="[size, { hover: hoverImg }]"
+      :style="{ '--bgImg': 'url(' + img + ')', '--hoverImg': 'url(' + hoverImg + ')' }"
+    ></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'BgIcon',
+  name: 'GLBgIcon',
   props: {
     img: {
       type: String,
       require: true,
+    },
+    hoverImg: {
+      type: String,
     },
     size: {
       type: String,
@@ -26,19 +33,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.g-icon-wrap {
+.g_icon_wrap {
   display: inline-block;
 
-  .g-icon-wrap_bg {
+  .g_icon_wrap_bg {
     display: block;
     width: 100%;
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    background-image: var(--bgImg);
 
     &.cover {
       background-size: cover;
+    }
+
+    &.hover:hover {
+      background-image: var(--hoverImg);
     }
   }
 }
