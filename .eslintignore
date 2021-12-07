@@ -1,1 +1,7 @@
+# Ignore artifacts:
+dist
+dist-test
+node_modules
 /src/iconfont
+# Ignore all HTML files:
+*.html

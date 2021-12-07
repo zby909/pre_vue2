@@ -6,7 +6,11 @@ vuecli4_vant_axios
 封装了 axios、字体库、路由、组件、vuex 等模块的自动引入
 内置了自己常用的 js 工具,npm 库,小组件封装等
 
-ps:可去除对移动端适配安装的 postcss-px-to-viewport 插件
+若用于 pc 端项目：
+请手动卸载删除以下部分即可...
+
+1. 移除对移动端适配安装的 postcss-px-to-viewport 插件相关
+2. 移除 vant 相关（plugins-vant）
 
 ## Project setup
 
