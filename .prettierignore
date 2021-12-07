@@ -2,6 +2,6 @@
 dist
 dist-test
 node_modules
-/src/style/iconfont
+/src/iconfont
 # Ignore all HTML files:
 *.html

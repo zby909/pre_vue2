@@ -13,7 +13,7 @@ module.exports = {
    * "error" 或 2 - 开启规则，使用错误级别的错误：error (当被触发的时候，程序会退出)
    */
   rules: {
-    'no-console': process.env.VUE_APP_MODE === 'production' ? 2 : 0,
+    'no-console': process.env.VUE_APP_MODE === 'production' ? 1 : 0,
     'no-debugger': process.env.VUE_APP_MODE === 'production' ? 2 : 0,
     'no-control-regex': 0, //禁止在正则表达式中使用控制字符
     'no-useless-escape': 0, //禁用不必要的转义字符

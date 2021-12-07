@@ -1,6 +1,20 @@
-const IS_PROD = ['production', 'prod'].includes(process.env.VUE_APP_MODE);
+const IS_PROD = ['production'].includes(process.env.VUE_APP_MODE);
 // const CompressionWebpackPlugin = require('compression-webpack-plugin');
-// const productionGzipExtensions = /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i;
+let plugins = [];
+// if (IS_PROD) {
+//   plugins.push(
+//     //gzip压缩gzip压缩gzip压缩
+//     new CompressionWebpackPlugin({
+//       filename: '[path].gz[query]',
+//       algorithm: 'gzip',
+//       test: /\.(js|css|json|txt|html|ico|svg)(\?.*)?$/i,
+//       threshold: 10240,
+//       minRatio: 0.8,
+//       //删除原始文件只保留压缩后的文件
+//       deleteOriginalAssets: true,
+//     })
+//   );
+// }
 
 module.exports = {
   publicPath: process.env.VUE_APP_PUBLIC_PATH,
@@ -26,20 +40,19 @@ module.exports = {
       //   changeOrigin: true, //允许跨域
       // },
       '/': {
+        // target: 'https://pmf.q2janus.com', // 要代理的域名
         target: 'https://zby909.top:3001/', // 要代理的域名
         changeOrigin: true, //允许跨域
       },
     },
   },
-
   css: {
     loaderOptions: {
       scss: {
-        prependData: `@import "~@/style/variables.scss";`,
+        prependData: `@import "~@/styles/variables.scss";`,
       },
     },
   },
-
   configureWebpack: {
     optimization: {
       splitChunks: {
@@ -83,22 +96,8 @@ module.exports = {
         },
       },
     },
-    //gzip压缩gzip压缩gzip压缩
-    // const myplugins = [];
-    // if (IS_PROD) {
-    //   myplugins.push(
-    //     new CompressionWebpackPlugin({
-    //       filename: '[path].gz[query]',
-    //       algorithm: 'gzip',
-    //       test: productionGzipExtensions,
-    //       threshold: 10240,
-    //       minRatio: 0.8,
-    //       //删除原始文件只保留压缩后的文件
-    //       deleteOriginalAssets: true,
-    //     })
-    //   );
-    // }
-    // plugins: [...myplugins],
+
+    plugins: plugins,
   },
 
   chainWebpack: config => {
@@ -125,6 +124,7 @@ module.exports = {
           interlaced: false,
         },
       });
+
     config.plugin('html').tap(args => {
       args[0].title = 'zby';
       return args;
