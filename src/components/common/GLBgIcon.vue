@@ -4,9 +4,9 @@
 <BackgroundImg :img="'图片路径'" :size="类型，可选cover / contain"/> 外部定义类名设置宽高即可显示
 -->
 <template>
-  <div class="g_icon_wrap">
+  <div class="gl-bgicon">
     <div
-      class="g_icon_wrap_bg"
+      class="gl-bgicon__bg"
       :class="[size, { hover: hoverImg }]"
       :style="{ '--bgImg': 'url(' + img + ')', '--hoverImg': 'url(' + hoverImg + ')' }"
     ></div>
@@ -33,10 +33,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.g_icon_wrap {
+.gl-bgicon {
   display: inline-block;
 
-  .g_icon_wrap_bg {
+  .gl-bgicon__bg {
     display: block;
     width: 100%;
     height: 100%;

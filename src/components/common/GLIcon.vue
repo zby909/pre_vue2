@@ -5,7 +5,7 @@ iconClass--自定义类名
 <GLIcon icon="icon-404" fontSize="16px" iconClass="hk-header-list-icon"></GLIcon>
 -->
 <template>
-  <svg class="g_icon" :class="iconClass" aria-hidden="true" :style="{ fontSize: fontSize }">
+  <svg class="gl-icon" :class="iconClass" aria-hidden="true" :style="{ fontSize: fontSize }">
     <use :xlink:href="'#' + icon"></use>
   </svg>
 </template>
@@ -31,7 +31,7 @@ export default {
 </script>
 
 <style scoped>
-.g_icon {
+.gl-icon {
   width: 1em;
   height: 1em;
   vertical-align: -0.15em;
