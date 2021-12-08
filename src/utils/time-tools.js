@@ -137,4 +137,35 @@ const getCurrentMonth = (value = null, separate = '-') => {
   };
 };
 
-export { dayjs, dayFormat, getLastWeek, getCurrentWeek, getLastMonth, getCurrentMonth };
+//获取日期之间的所有日期数组 getDayAll('2020-01-01','2020-02-01');
+const getDayAll = (starDay, endDay) => {
+  var arr = [];
+  var dates = [];
+
+  // 设置两个日期UTC时间
+  var db = new Date(starDay);
+  var de = new Date(endDay);
+  // 获取两个日期GTM时间
+  var s = db.getTime() - 24 * 60 * 60 * 1000;
+  var d = de.getTime() - 24 * 60 * 60 * 1000;
+
+  // 获取到两个日期之间的每一天的毫秒数
+  for (var i = s; i <= d; ) {
+    i = i + 24 * 60 * 60 * 1000;
+    arr.push(parseInt(i));
+  }
+
+  // 获取每一天的时间  YY-MM-DD
+  for (var j in arr) {
+    var time = new Date(arr[j]);
+    var year = time.getFullYear(time);
+    var mouth = time.getMonth() + 1 >= 10 ? time.getMonth() + 1 : '0' + (time.getMonth() + 1);
+    var day = time.getDate() >= 10 ? time.getDate() : '0' + time.getDate();
+    var YYMMDD = year + '-' + mouth + '-' + day;
+    dates.push(YYMMDD);
+  }
+
+  return dates;
+};
+
+export { dayjs, dayFormat, getLastWeek, getCurrentWeek, getLastMonth, getCurrentMonth, getDayAll };

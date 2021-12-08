@@ -5,7 +5,7 @@ import store from './store';
 import 'normalize.css';
 import '@/styles/index.scss';
 import '@/plugins/vant';
-import '@/utils/directives';
+import '@/directive/directives';
 import '@/iconfont/iconfont';
 import '@/components/index';
 import apiModules from '@/api/index';

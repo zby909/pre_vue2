@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-
 Vue.use(Vuex);
+
+import getters from './getters';
 
 const modulesFiles = require.context('./modules', true, /\.js$/);
 const modules = modulesFiles.keys().reduce((modules, modulePath) => {
@@ -20,6 +21,6 @@ export default new Vuex.Store({
   },
   mutations: {},
   actions: {},
-  getters: {},
+  getters,
   modules,
 });
