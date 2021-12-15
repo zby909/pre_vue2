@@ -13,14 +13,22 @@ let g_showMsg = true;
 
 BaseService.getRequest = async (url, params = {}, { showMsg = true } = {}) => {
   g_showMsg = showMsg;
-  const res = await BaseService.get(url, { params });
-  return [res?.data?.data, res?.data, res];
+  try {
+    const res = await BaseService.get(url, { params });
+    return [res?.data?.data, res?.data, res];
+  } catch (error) {
+    return [];
+  }
 };
 
 BaseService.postRequest = async (url, params = {}, { showMsg = true, isJson = true } = {}) => {
   g_showMsg = showMsg;
-  const res = await BaseService.post(url, isJson ? params : Qs.stringify(params));
-  return [res?.data?.data, res?.data, res];
+  try {
+    const res = await BaseService.post(url, isJson ? params : Qs.stringify(params));
+    return [res?.data?.data, res?.data, res];
+  } catch (error) {
+    return [];
+  }
 };
 
 // 添加请求拦截器
@@ -35,8 +43,7 @@ BaseService.interceptors.request.use(
   error => {
     // 请求错误处理
     console.log(error);
-    // return Promise.reject(error);
-    return error;
+    return Promise.reject(error);
   }
 );
 
@@ -44,24 +51,23 @@ BaseService.interceptors.request.use(
 BaseService.interceptors.response.use(
   response => {
     console.log('响应拦截BaseService', response);
-    if (g_showMsg && response.data.code !== 0) {
-      Toast({
-        message: response.data.msg ?? '未知错误',
-        type: 'fail',
-        duration: 5 * 1000,
-      });
-    }
     return response;
   },
   error => {
     // 响应错误处理
-    Toast({
-      message: '请求错误',
-      type: 'fail',
-      duration: 5 * 1000,
-    });
-    console.log(error);
-    return error;
+    if (g_showMsg) {
+      Toast({
+        message: error.response?.data?.message || error.message || '请求错误',
+        type: 'fail',
+        duration: 5 * 1000,
+      });
+    }
+    //处理错误信息
+    console.log(error.request);
+    console.log(error.response);
+    console.log(error.message);
+    console.log(error.config);
+    return Promise.reject(error);
   }
 );
 
