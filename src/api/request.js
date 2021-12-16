@@ -44,7 +44,7 @@ BaseService.interceptors.request.use(
     // 请求错误处理
     console.log(error);
     return Promise.reject(error);
-  },
+  }
 );
 
 // 添加响应拦截器
@@ -68,7 +68,7 @@ BaseService.interceptors.response.use(
     console.log(error.message);
     console.log(error.config);
     return Promise.reject(error);
-  },
+  }
 );
 
 //----------------------------------下一个实例----------------------------------
