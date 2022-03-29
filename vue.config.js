@@ -101,29 +101,29 @@ module.exports = {
   },
 
   chainWebpack: config => {
-    config.module
-      .rule('images')
-      .test(/\.(png|jpe?g|gif|svg)(\?.*)?$/)
-      .use('image-webpack-loader')
-      .loader('image-webpack-loader')
-      .options({
-        mozjpeg: {
-          progressive: true,
-          quality: 80,
-        },
-        // optipng.enabled: false will disable optipng
-        optipng: {
-          enabled: false,
-        },
-        pngquant: {
-          quality: [0.75, 0.9],
-          speed: 4,
-        },
-        gifsicle: {
-          //   optimizationLevel: 1,
-          interlaced: false,
-        },
-      });
+    // config.module
+    //   .rule('images')
+    //   .test(/\.(png|jpe?g|gif|svg)(\?.*)?$/)
+    //   .use('image-webpack-loader')
+    //   .loader('image-webpack-loader')
+    //   .options({
+    //     mozjpeg: {
+    //       progressive: true,
+    //       quality: 80,
+    //     },
+    //     // optipng.enabled: false will disable optipng
+    //     optipng: {
+    //       enabled: false,
+    //     },
+    //     pngquant: {
+    //       quality: [0.75, 0.9],
+    //       speed: 4,
+    //     },
+    //     gifsicle: {
+    //       //   optimizationLevel: 1,
+    //       interlaced: false,
+    //     },
+    //   });
 
     config.plugin('html').tap(args => {
       args[0].title = 'zby';
