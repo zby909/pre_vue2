@@ -6,5 +6,4 @@ const apiModules = modulesFiles.keys().reduce((modules, modulePath) => {
   modules[moduleName] = value.default;
   return modules;
 }, {});
-console.log(apiModules);
 export default apiModules;

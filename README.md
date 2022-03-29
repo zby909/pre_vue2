@@ -7,7 +7,7 @@ vuecli4_vant_axios
 内置了自己常用的 js 工具,npm 库,小组件封装等
 
 若用于 pc 端项目：
-请手动卸载删除以下部分即可...
+手动卸载删除以下部分即可...
 
 1. 移除对移动端适配安装的 postcss-px-to-viewport 插件相关
 2. 移除 vant 相关（plugins-vant）

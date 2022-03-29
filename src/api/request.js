@@ -9,25 +9,25 @@ const BaseService = axios.create({
   timeout: 5000, // request timeout
 });
 
-let g_showMsg = true;
+let g_showMsg = [];
 
 BaseService.getRequest = async (url, params = {}, { showMsg = true } = {}) => {
-  g_showMsg = showMsg;
+  showMsg && !g_showMsg.includes(url) && g_showMsg.push(url);
   try {
     const res = await BaseService.get(url, { params });
     return [res?.data?.data, res?.data, res];
   } catch (error) {
-    return [];
+    return [null, error?.data, error];
   }
 };
 
 BaseService.postRequest = async (url, params = {}, { showMsg = true, isJson = true } = {}) => {
-  g_showMsg = showMsg;
+  showMsg && !g_showMsg.includes(url) && g_showMsg.push(url);
   try {
     const res = await BaseService.post(url, isJson ? params : Qs.stringify(params));
     return [res?.data?.data, res?.data, res];
   } catch (error) {
-    return [];
+    return [null, error?.data, error];
   }
 };
 
@@ -44,7 +44,7 @@ BaseService.interceptors.request.use(
     // 请求错误处理
     console.log(error);
     return Promise.reject(error);
-  }
+  },
 );
 
 // 添加响应拦截器
@@ -55,7 +55,7 @@ BaseService.interceptors.response.use(
   },
   error => {
     // 响应错误处理
-    if (g_showMsg) {
+    if (g_showMsg.includes(error.config.url)) {
       Toast({
         message: error.response?.data?.message || error.message || '请求错误',
         type: 'fail',
@@ -67,8 +67,8 @@ BaseService.interceptors.response.use(
     console.log(error.response);
     console.log(error.message);
     console.log(error.config);
-    return Promise.reject(error);
-  }
+    return Promise.reject(error.response);
+  },
 );
 
 //----------------------------------下一个实例----------------------------------
