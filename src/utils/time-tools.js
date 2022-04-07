@@ -12,11 +12,11 @@ const dayFormat = (timeval = new Date(), format = 'YYYY-MM-DD HH:mm:ss') => {
 //params: 时间戳/new Date(?)
 // 返回：{startDateTime: "2021-05-10 00:00:00", endDateTime: "2021-05-16 23:59:59"}
 const getLastWeek = (value = null, separate = '-') => {
-  // 如果为null,则格式化当前时间
-  if (!value) value = Number(new Date());
+  // 如果为无效时间,则格式化当前时间
+  if (!value) value = +new Date();
   // 如果dateTime长度为10或者13，则为秒和毫秒的时间戳，如果超过13位，则为其他的时间格式
-  if (value.toString().length == 10) value *= 1000;
-  value = +new Date(Number(value));
+  if (String(value).length == 10 && value == Number(value)) value *= 1000;
+  value = Number(value);
 
   const one_day = 86400000; // 24 * 60 * 60 * 1000;
   const lastWeekDate = new Date(value - 7 * one_day);
@@ -48,11 +48,11 @@ const getLastWeek = (value = null, separate = '-') => {
 
 /* 获取本周时间范围 默认从当天算起 */
 const getCurrentWeek = (value = null, separate = '-') => {
-  // 如果为null,则格式化当前时间
-  if (!value) value = Number(new Date());
+  // 如果为无效时间,则格式化当前时间
+  if (!value) value = +new Date();
   // 如果dateTime长度为10或者13，则为秒和毫秒的时间戳，如果超过13位，则为其他的时间格式
-  if (value.toString().length == 10) value *= 1000;
-  value = +new Date(Number(value));
+  if (String(value).length == 10 && value == Number(value)) value *= 1000;
+  value = Number(value);
 
   const one_day = 86400000; // 24 * 60 * 60 * 1000;
   const weekDate = new Date(value);
@@ -83,11 +83,11 @@ const getCurrentWeek = (value = null, separate = '-') => {
 
 /* 获取上月时间范围 默认从当天算起 */
 const getLastMonth = (value = null, separate = '-') => {
-  // 如果为null,则格式化当前时间
-  if (!value) value = Number(new Date());
+  // 如果为无效时间,则格式化当前时间
+  if (!value) value = +new Date();
   // 如果dateTime长度为10或者13，则为秒和毫秒的时间戳，如果超过13位，则为其他的时间格式
-  if (value.toString().length == 10) value *= 1000;
-  value = +new Date(Number(value));
+  if (String(value).length == 10 && value == Number(value)) value *= 1000;
+  value = Number(value);
 
   // 获取上个月时间
   const targetTime = new Date(value);
@@ -101,7 +101,7 @@ const getLastMonth = (value = null, separate = '-') => {
     month = '0' + month;
   }
 
-  const yDate = new Date(year, month, 0);
+  const yDate = new Date(year, Number(month), 0);
 
   const startDateTime = year + separate + month + separate + '01 00:00:00'; //上个月第一天
   const endDateTime = year + separate + month + separate + yDate.getDate() + ' 23:59:59'; //上个月最后一天
@@ -113,11 +113,11 @@ const getLastMonth = (value = null, separate = '-') => {
 
 /* 获取本月时间范围 默认从当天算起 */
 const getCurrentMonth = (value = null, separate = '-') => {
-  // 如果为null,则格式化当前时间
-  if (!value) value = Number(new Date());
+  // 如果为无效时间,则格式化当前时间
+  if (!value) value = +new Date();
   // 如果dateTime长度为10或者13，则为秒和毫秒的时间戳，如果超过13位，则为其他的时间格式
-  if (value.toString().length == 10) value *= 1000;
-  value = +new Date(Number(value));
+  if (String(value).length == 10 && value == Number(value)) value *= 1000;
+  value = Number(value);
 
   const targetTime = new Date(value);
   const year = targetTime.getFullYear();
@@ -126,7 +126,7 @@ const getCurrentMonth = (value = null, separate = '-') => {
     month = '0' + month;
   }
 
-  const yDate = new Date(year, month, 0);
+  const yDate = new Date(year, Number(month), 0);
 
   const startDateTime = year + separate + month + separate + '01 00:00:00'; //这个月第一天
   const endDateTime = year + separate + month + separate + yDate.getDate() + ' 23:59:59'; //这个月最后一天
@@ -137,31 +137,31 @@ const getCurrentMonth = (value = null, separate = '-') => {
   };
 };
 
-//获取日期之间的所有日期数组 getDayAll('2020-01-01','2020-02-01');
+//获取日期直接的所有日期数组 getDayAll('2020-01-01','2020-02-01');
 const getDayAll = (starDay, endDay) => {
-  var arr = [];
-  var dates = [];
+  const arr = [];
+  const dates = [];
 
   // 设置两个日期UTC时间
-  var db = new Date(starDay);
-  var de = new Date(endDay);
+  const db = new Date(starDay);
+  const de = new Date(endDay);
   // 获取两个日期GTM时间
-  var s = db.getTime() - 24 * 60 * 60 * 1000;
-  var d = de.getTime() - 24 * 60 * 60 * 1000;
+  const s = db.getTime() - 24 * 60 * 60 * 1000;
+  const d = de.getTime() - 24 * 60 * 60 * 1000;
 
   // 获取到两个日期之间的每一天的毫秒数
-  for (var i = s; i <= d; ) {
+  for (let i = s; i <= d; ) {
     i = i + 24 * 60 * 60 * 1000;
-    arr.push(parseInt(i));
+    arr.push(parseInt(String(i)));
   }
 
   // 获取每一天的时间  YY-MM-DD
-  for (var j in arr) {
-    var time = new Date(arr[j]);
-    var year = time.getFullYear(time);
-    var mouth = time.getMonth() + 1 >= 10 ? time.getMonth() + 1 : '0' + (time.getMonth() + 1);
-    var day = time.getDate() >= 10 ? time.getDate() : '0' + time.getDate();
-    var YYMMDD = year + '-' + mouth + '-' + day;
+  for (const j in arr) {
+    const time = new Date(arr[j]);
+    const year = time.getFullYear();
+    const mouth = time.getMonth() + 1 >= 10 ? time.getMonth() + 1 : '0' + (time.getMonth() + 1);
+    const day = time.getDate() >= 10 ? time.getDate() : '0' + time.getDate();
+    const YYMMDD = year + '-' + mouth + '-' + day;
     dates.push(YYMMDD);
   }
 
