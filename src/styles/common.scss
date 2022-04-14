@@ -17,25 +17,21 @@ ul {
   margin: 0;
 }
 
-::-webkit-scrollbar-track-piece {
-  background: #fff;
-}
-
+//整个滚动条
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
-  border-radius: 15px;
 }
-
+//滚动条没有滑块的轨道部分
+::-webkit-scrollbar-track-piece {
+  background: #fff;
+}
+//滚动条上的滚动滑块
 ::-webkit-scrollbar-thumb {
-  width: 5px;
-  height: 5px;
   background: rgba(144, 147, 153, 0.5);
   border-radius: 15px;
 }
-
-.flexCenter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* 滚动条鼠标移上去 */
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #bbb;
 }
