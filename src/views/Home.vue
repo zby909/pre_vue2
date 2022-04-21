@@ -52,28 +52,29 @@ export default {
 </script>
 <style lang="scss" scoped>
 .test {
-  padding-top: 10px;
+  padding-top: 20px;
   .van-button {
-    margin: 10px auto;
-    width: 300px;
+    margin: 0 auto 20px;
+    width: 750px;
   }
 }
 
 .ttt {
   text-align: center;
   color: $bg-orange;
+  font-size: 32px;
 }
 
 .dialog-con {
   text-align: center;
-  margin: 20px 10px;
+  margin: 40px 20px;
 }
 
 .t-icon {
   text-align: center;
   .bg-icon {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
   }
 }
 </style>

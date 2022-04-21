@@ -61,19 +61,19 @@ export default {
   .tipsconbox {
     position: relative;
     color: #333333;
-    padding: 0 10px;
+    padding: 0 20px;
     .confirmconbox-tit {
       text-align: center;
-      padding: 16px 0;
+      padding: 32px 0;
       font-weight: 700;
       &.bomline {
-        border-bottom: 1px solid #e6e6e6;
+        border-bottom: 2px solid #e6e6e6;
       }
-      font-size: 16px;
+      font-size: 32px;
       .closebtn {
         position: absolute;
-        top: 15px;
-        right: 15px;
+        top: 30px;
+        right: 30px;
       }
     }
   }
